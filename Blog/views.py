@@ -16,7 +16,7 @@ def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
-            post = form.save(commit=False)
+            post = form.save()
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
@@ -30,7 +30,7 @@ def post_edit(request, pk):
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
-            post = form.save(commit=False)
+            post = form.save()
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
